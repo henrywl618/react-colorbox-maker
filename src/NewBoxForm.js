@@ -1,15 +1,39 @@
 import React, {useState} from "react";
 
-const NewBoxForm = ()=>{
+const NewBoxForm = ({addNewBox})=>{
 
-    let[]
+    const INITIAL_STATE = {
+        width:"",
+        height:"",
+        color:"",
+    };
+
+    let[formData, setFormData] = useState(INITIAL_STATE);
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData(fData => ({
+            ...fData,
+            [name]:value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addNewBox(formData);
+        setFormData(INITIAL_STATE);
+    };
+
     return(
         <form>
-            <label htmlFor="width"> Width: <input name="width" type="text"></input></label>
-            <label htmlFor="height"> Height: <input name="height" type="text"></input></label>
-            <label htmlFor="color"> Color: <input name="color" type="text"></input></label>
+            <label htmlFor="width">Width:</label>
+            <input name="width" id="width" type="text" onChange={handleChange} value={formData.width}></input>
+            <label htmlFor="height">Height:</label>
+            <input name="height" id="height" type="text" onChange={handleChange} value={formData.height}></input>
+            <label htmlFor="color">Color:</label>
+            <input name="color" id="color" type="text" onChange={handleChange} value={formData.color}></input>
             <br></br>
-            <button>Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
         </form>
     );
 };
