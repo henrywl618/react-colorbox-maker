@@ -1,0 +1,10 @@
+.Box{
+    display: inline-block;
+    margin: 2px;
+}
+
+.Box-button{
+    position: relative;
+    left: -28px;
+    bottom: 10px;
+}
